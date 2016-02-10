@@ -1,4 +1,4 @@
-package com.github.leertaken.leertaak1.arraymerger;
+package com.github.leertaken.leertaak1.opdracht10;
 
 /**
  * Created by Sergen Nurel
@@ -7,7 +7,7 @@ package com.github.leertaken.leertaak1.arraymerger;
  * Authors: Sergen Nurel,
  * |
  * Version: 1.0
- * Package: com.github.leertaken.leertaak1.arraymerger
+ * Package: com.github.leertaken.leertaak1.opdracht10
  * Class:
  * Description:
  * |
