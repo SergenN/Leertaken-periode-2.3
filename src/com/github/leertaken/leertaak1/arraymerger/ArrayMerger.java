@@ -1,4 +1,4 @@
-package com.github.leertaken.leertaak1;
+package com.github.leertaken.leertaak1.arraymerger;
 
 /**
  * Created by Sergen Nurel
@@ -16,4 +16,8 @@ package com.github.leertaken.leertaak1;
  * 1.0:
  */
 public class ArrayMerger {
+
+    int[] array1 = {1,2,3};
+    int[] array2 = {3,4,5};
+    
 }
