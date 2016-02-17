@@ -18,6 +18,8 @@
  */
 package com.github.leertaken.leertaak1.opdracht19.multiformat;
 
+import javafx.beans.binding.NumberExpressionBase;
+
 /**
  * The multiformat calculator
  */
@@ -30,9 +32,14 @@ public class Calculator {
   // The current numberbase of the calculator
   private Base base = new DecimalBase();
 
-  public void addOperand(String newOperand) throws FormatException {
-	  operand_1 = operand_0;
-      operand_0 = format.parse(newOperand, base);
+  public void addOperand(String newOperand) throws FormatException, NumberBaseException{
+    newOperand = newOperand.toUpperCase();
+	  if(base.getDigits().contains(newOperand)) {
+        operand_1 = operand_0;
+        operand_0 = format.parse(newOperand, base);
+      }else {
+        throw new NumberBaseException(base);
+      }
   }
 
   public void add(){

@@ -39,6 +39,7 @@ public abstract class Base {
 
   public String getName() { return name; }
   public int getBase() { return base; }
+  public String getDigits(){ return digits;}
 
   /**
    * Takes the input string and calculates the double value, using the current numberbase. 

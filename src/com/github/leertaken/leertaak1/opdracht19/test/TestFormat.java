@@ -52,7 +52,7 @@ public class TestFormat extends TestCase {
 			assertEquals("11.0/100.0",calc.secondOperand());
 			calc.setBase(new HexBase());
 			assertEquals("3.0/4.0",calc.secondOperand());
-		} catch (FormatException e) {
+		} catch (FormatException | NumberBaseException e) {
 			fail("Unexpected exception");
 		}
     	

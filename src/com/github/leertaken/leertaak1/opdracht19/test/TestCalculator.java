@@ -43,7 +43,7 @@ public class TestCalculator extends TestCase {
 		calc.add();
 		assertEquals("0.0",calc.firstOperand());
 		assertEquals("6.0",calc.secondOperand());
-		}catch(FormatException e){
+		}catch(FormatException | NumberBaseException e){
 			fail("Unexpected format exception");
 		}
 	}
