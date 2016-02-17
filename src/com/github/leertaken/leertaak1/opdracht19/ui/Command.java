@@ -17,7 +17,7 @@
  * 02111-1307  USA
  */
 package com.github.leertaken.leertaak1.opdracht19.ui;
-import multiformat.*;
+import com.github.leertaken.leertaak1.opdracht19.multiformat.*;
 import java.io.*;
 
 /**

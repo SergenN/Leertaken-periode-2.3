@@ -18,7 +18,7 @@
  */
 package com.github.leertaken.leertaak1.opdracht19.test;
 import junit.framework.TestCase;
-import multiformat.*;
+import com.github.leertaken.leertaak1.opdracht19.multiformat.*;
 
 
 public class TestCalculator extends TestCase {
