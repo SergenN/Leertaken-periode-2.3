@@ -20,7 +20,7 @@ package com.github.leertaken.leertaak1.opdracht19.multiformat;
 
 /**
  * Class representing a rational ('breuk').
- * @author J.Baljé: Added comments
+ * @author J.Baljï¿½: Added comments
  */
 public class Rational {
 	static final double PRECISION=10;
@@ -127,11 +127,7 @@ public class Rational {
 			denominator * other.denominator);
 	}
 
-	public Rational div(Rational other) {
-		if(numerator ==0 || denominator == 0){
-			System.out.println("Error Divided by 0");
-			return new Rational(0,0);
-		}
+	public Rational div(Rational other){
 		return new Rational(
 			numerator * other.denominator,
 			denominator * other.numerator);

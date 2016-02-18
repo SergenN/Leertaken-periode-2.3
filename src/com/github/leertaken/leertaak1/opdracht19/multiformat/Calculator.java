@@ -34,12 +34,25 @@ public class Calculator {
 
   public void addOperand(String newOperand) throws FormatException, NumberBaseException{
     newOperand = newOperand.toUpperCase();
-	  if(base.getDigits().contains(newOperand)) {
+
+    if (base.getDigits().contains(newOperand)) {
+      operand_1 = operand_0;
+      operand_0 = format.parse(newOperand, base);
+      return;
+    }
+
+    if (base instanceof DecimalBase) {
+      try {
+        Double.parseDouble(newOperand);
+
         operand_1 = operand_0;
         operand_0 = format.parse(newOperand, base);
-      }else {
+        return;
+      }catch(NumberFormatException e){
         throw new NumberBaseException(base);
       }
+    }
+    throw new NumberBaseException(base);
   }
 
   public void add(){
@@ -55,6 +68,9 @@ public class Calculator {
     operand_1 = new Rational();
   }
   public void divide() {
+    if(operand_0.getNumerator() == 0 || operand_1.getDenominator() == 0){
+      throw new IllegalArgumentException("Can not devide by zero!");
+    }
     operand_0 = operand_1.div(operand_0);
     operand_1 = new Rational();
   }
