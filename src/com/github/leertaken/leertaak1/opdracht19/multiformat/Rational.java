@@ -128,6 +128,10 @@ public class Rational {
 	}
 
 	public Rational div(Rational other) {
+		if(numerator ==0 || denominator == 0){
+			System.out.println("Error Divided by 0");
+			return new Rational(0,0);
+		}
 		return new Rational(
 			numerator * other.denominator,
 			denominator * other.numerator);
