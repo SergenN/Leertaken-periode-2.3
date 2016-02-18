@@ -17,9 +17,11 @@ public class NumberGUI extends JPanel {
 
         JButton zero = new JButton();
         zero.setText("0");
+        add(zero);
 
         JButton one = new JButton();
         one.setText("1");
+        add(one);
 
         JButton two = new JButton();
         two.setText("2");
