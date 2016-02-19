@@ -122,9 +122,17 @@ public class Calculator {
     }*/
   }
   public void divide() {
-    if((operand_0.getNumerator()!=0&&operand_0.getDenominator()!=0)||(operand_1.getNumerator()!=0&&operand_1.getDenominator()!=0)){
-      throw new IllegalArgumentException("Can not devide by zero!");
+    //if((operand_0.getNumerator()!=0&&operand_0.getDenominator()!=0)||(operand_1.getNumerator()!=0&&operand_1.getDenominator()!=0)){
+    try {
+      if (((format.parse("0", base).equals(operand_0.toString())
+              && format.parse("0", base).equals(operand_0.getDenominator()))
+              || (format.parse("0", base).equals(operand_1.toString())
+              && format.parse("0", base).equals(operand_1.getDenominator())))) {
+        throw new IllegalArgumentException("Can not devide by zero!");
+      }
     }
+
+  catch(FormatException e){}
     operand_0 = operand_1.div(operand_0);
     operand_1 = new Rational();
   }
