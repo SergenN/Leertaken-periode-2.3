@@ -155,7 +155,7 @@ public class NumberGUI extends JPanel {
                 pressedEqual=false;
                 fullNumber();
                 operand = knop.getText();
-                steps += ","+e.getActionCommand().toString()+",";
+                steps += " "+e.getActionCommand().toString()+" ";
                 outputGUI.updateNumbers(values,steps);
                 checkValues();
 
@@ -240,16 +240,6 @@ public class NumberGUI extends JPanel {
                 System.out.println(multistep.toString());
                 outputGUI.updateNumbers(multistep.get(multistep.size() - 1), steps);
 
-                /*calculator.addOperand(values);
-                calculator.addOperand(values2);
-                if(operand.equals("+")) calculator.add();
-                else if(operand.equals("-")) calculator.subtract();
-                else if(operand.equals("*")) calculator.multiply();
-                else if(operand.equals("/")) calculator.divide();
-                outputGUI.updateNumbers(calculator.secondOperand(),steps);
-                values=calculator.secondOperand();
-                values2=calculator.firstOperand();
-                operand="";*/
             }catch (NumberBaseException | NumberFormatException | FormatException e){
                 e.getStackTrace();
             }
@@ -267,7 +257,13 @@ public class NumberGUI extends JPanel {
                         multistep.add(0,"0");
                     }
                 }
+
+                outputGUI.updateNumbers(values,steps);
+
+
                 checkValues();
+                outputGUI.addHistory(steps,outputGUI.getInputText());
+                steps = "";
             }
         });
     }
