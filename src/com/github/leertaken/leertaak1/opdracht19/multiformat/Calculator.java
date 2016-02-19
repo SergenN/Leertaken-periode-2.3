@@ -20,6 +20,8 @@ package com.github.leertaken.leertaak1.opdracht19.multiformat;
 
 import javafx.beans.binding.NumberExpressionBase;
 
+import java.util.function.BinaryOperator;
+
 /**
  * The multiformat calculator
  */
@@ -52,6 +54,42 @@ public class Calculator {
         throw new NumberBaseException(base);
       }
     }
+    if(base instanceof BinaryBase){
+      try{
+        //Integer.parseInt(newOperand,2);
+        operand_1 = operand_0;
+        operand_0 = format.parse(newOperand, base);
+        return;
+      }
+      catch (NumberFormatException e){
+        System.out.println("Test bin");
+        throw new NumberBaseException(base);
+      }
+    }
+    if(base instanceof HexBase){
+      try{
+        //Integer.parseInt(newOperand,2);
+        operand_1 = operand_0;
+        operand_0 = format.parse(newOperand, base);
+        return;
+      }
+      catch (NumberFormatException e){
+        System.out.println("Test Hex");
+        throw new NumberBaseException(base);
+      }
+    }
+    if(base instanceof OctalBase){
+      try{
+        //Integer.parseInt(newOperand,2);
+        operand_1 = operand_0;
+        operand_0 = format.parse(newOperand, base);
+        return;
+      }
+      catch (NumberFormatException e){
+        System.out.println("Test oct");
+        throw new NumberBaseException(base);
+      }
+    }
     throw new NumberBaseException(base);
   }
 
@@ -64,11 +102,27 @@ public class Calculator {
     operand_1 = new Rational();
   }
   public void multiply() {
-    operand_0 = operand_1.mul(operand_0);
-    operand_1 = new Rational();
+    //try {
+      /*if (((     format.parse("0", base).equals(operand_0.getNumerator())
+              &&format.parse("0", base).equals(operand_0.getDenominator()))
+              ||(format.parse("0", base).equals(operand_1.getNumerator())
+              &&format.parse("0", base).equals(operand_1.getDenominator())))) {*/
+        operand_0 = operand_1.mul(operand_0);
+        operand_1 = new Rational();
+        System.out.println("One 0");
+      /*} else {
+        operand_0.setNumerator(0);
+        operand_0.setDenominator(0);
+        operand_1 = new Rational();
+        System.out.println("No 0");
+      }*/
+    //}
+    /*catch (FormatException e){
+
+    }*/
   }
   public void divide() {
-    if(operand_0.getNumerator() == 0 || operand_1.getDenominator() == 0){
+    if((operand_0.getNumerator()!=0&&operand_0.getDenominator()!=0)||(operand_1.getNumerator()!=0&&operand_1.getDenominator()!=0)){
       throw new IllegalArgumentException("Can not devide by zero!");
     }
     operand_0 = operand_1.div(operand_0);
