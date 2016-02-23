@@ -1,19 +1,19 @@
 package com.github.leertaken.leertaak2.Opdracht2;
 
+import com.github.leertaken.leertaak2.Opdracht2.TreeClass;
+
 /**
- * Created by Sergen Nurel
- * Date of creation 22-2-2016, 14:32
- * |
- * Authors: Sergen Nurel,
- * |
- * Version: 1.0
- * Package: com.github.leertaken.leertaak2.Opdracht2
- * Class:
- * Description:
- * |
- * |
- * Changelog:
- * 1.0:
+ * Created by Hp user on 22-2-2016.
  */
-public class Main {
+public class main {
+    public static void main(String[] args) {
+        TreeClass treeClass= new TreeClass();
+        System.out.println("#############################");
+        treeClass.printBreedteOrdering();
+        System.out.println("#############################");
+        treeClass.printPreOrdering();
+        System.out.println("#############################");
+        treeClass.printPostOrdering();
+    }
 }
+
