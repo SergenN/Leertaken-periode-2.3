@@ -1,7 +1,5 @@
 package com.github.leertaken.leertaak2.opdracht1;
 
-import sun.reflect.generics.tree.Tree;
-
 import java.util.Stack;
 
 /**
@@ -48,7 +46,7 @@ public class Main {
     public void inOrder(TreeNode root){
 
         TreeNode current = root;
-        Stack<TreeNode> stack = new Stack();
+        Stack<TreeNode> stack = new Stack<>();
 
         System.out.println();
 
