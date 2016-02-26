@@ -15,12 +15,15 @@ public class DecisionBuilder {
     private Double startEntropy;
     private HashMap<String,Integer> availableChoices=new HashMap<>(), availabletempChoices= new HashMap<>();
     private Scanner file;
+    private ArrayList<String> refile;
 
     public DecisionBuilder(Scanner file){
         this.file=file;
         int amountLooped= 0;
+        refile = new ArrayList<>();
         while (file.hasNext()){
             String line = file.nextLine();
+            refile.add(line);
             String keys[] = line.split(";");
             if(amountLooped<=1) {
                 if (amountLooped == 0) {
@@ -69,8 +72,9 @@ public class DecisionBuilder {
         int[] tellerCalc = startEntropyTeller(start,end);
         Double result = new Double(0);
         for(int i = 0; i<tellerCalc.length;i++){
-            Double breuk = new Double(new Double(tellerCalc[i])/new Double((availabletempChoices.size()+1)));
+            Double breuk = new Double((new Double(tellerCalc[i]))/(new Double((availabletempChoices.size()+1))));
             Double answer = new Double(-breuk*(Math.log(breuk)/Math.log(2)));
+            System.out.println("Antwoord Left Loop: "+breuk+"/"+(availabletempChoices.size()-1));
             if(i==0){
                 result=answer;
             }else{
@@ -97,6 +101,7 @@ public class DecisionBuilder {
         for(String key: availabletempChoices.keySet()){
             teller[i] = availabletempChoices.get(key);
             i++;
+            System.out.println("New Available temp choice fill");
         }
         return teller;
     }
@@ -118,13 +123,13 @@ public class DecisionBuilder {
         }
     }
     private void getAvailableTempChoices(String[] keys){
-        if(availableChoices.containsKey(keys[keys.length-1])){
-            int ammount = availabletempChoices.get(keys[keys.length-1]);
-            ammount = ammount+1;
-            availabletempChoices.replace(keys[keys.length-1], ammount);
+        if(availabletempChoices.containsKey(keys[keys.length-1])){
+            int amount = availabletempChoices.get(keys[keys.length-1]);
+            amount = amount+1;
+            availabletempChoices.replace(keys[keys.length-1], amount);
         }else{
-            int ammount = 1;
-            availabletempChoices.put(keys[keys.length-1],ammount);
+            int amount = 1;
+            availabletempChoices.put(keys[keys.length-1],amount);
         }
     }
 
@@ -139,9 +144,11 @@ public class DecisionBuilder {
             }else{
                 if(amountLooped>=start&&amountLooped<=end) {
                     getAvailableTempChoices(keys);
+                    System.out.println("getAvailabletempstar");
                 }
             }
             amountLooped++;
+            System.out.println(amountLooped+"Looped");
         }
     }
 }

@@ -7,6 +7,7 @@ public class main {
     public static void main(String[]args) {
         try{
             Loader loader = new Loader();
+
             new DecisionBuilder(loader.getInput());
         }
         catch (Exception e){
