@@ -6,19 +6,23 @@ import java.util.*;
  */
 class Tui {
     private Scanner reader = new Scanner(System.in);
-    private TicTacToe t;
+    private TicTacToe game;
 
     public Tui() {
         do {
             System.out.println("*** new Game ***\n");
-            t = new TicTacToe();
-            if (t.computerPlays()) System.out.println("I start:\n");
-            else System.out.println("You start:\n");
-            while (!t.gameOver()) {
-                t.playMove(move());
-                System.out.println(t);
+            game = new TicTacToe();
+            if (game.computerPlays()){
+                System.out.println("I start:\n");
             }
-            System.out.println("Game over " + t.winner() + " wins");
+            else{
+                System.out.println("You start:\n");
+            }
+            while (!game.gameOver()) {
+                game.playMove(move());
+                System.out.println(game);
+            }
+            System.out.println("Game over, " + game.winner());
         } while (nextGame());
     }
 
@@ -27,34 +31,36 @@ class Tui {
     }
 
     private int move() {
-        if (t.computerPlays()) {
-            int compMove = t.chooseMove();
+        String humanMove;
+
+        if (game.computerPlays()) {
+            int compMove = game.chooseMove();
             System.out.println("Computer Move = " + compMove);
             return compMove;
         } else {
-            int humanMove;
             do {
-                System.out.print("Human move    = ");
-                // enter integer for the position on the tictactoe board
-                // 012
-                // 345
-                // 678
-                humanMove = reader.nextInt();
+                System.out.print("Human move = ");
+                humanMove = reader.next();
             }
-            while (!t.moveOk(humanMove));
-            return humanMove;
+            while (!game.moveOk(humanMove));
+            return Integer.parseInt(humanMove);
         }
     }
 
     private boolean nextGame() {
-        Character yn;
+        Character answer;
         do {
             System.out.print("next Game? enter Y/N: ");
-            yn = (reader.next()).charAt(0);
-            System.out.println("" + yn);
+            answer = (reader.next()).charAt(0);
+            System.out.println("" + answer);
         }
-        while (!(yn == 'Y' || yn == 'y' || yn == 'N' || yn == 'n'));
-        return yn == 'Y' || yn == 'y';
+        while (!(answer == 'Y' || answer == 'y' || answer == 'N' || answer == 'n'));
+        return answer == 'Y' || answer == 'y';
     }
 }
 
+
+// enter integer for the position on the tictactoe board
+// 012
+// 345
+// 678

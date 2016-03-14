@@ -62,7 +62,7 @@ public class Calculator {
         return;
       }
       catch (NumberFormatException e){
-        System.out.println("Test bin");
+        System.out.println("TestGame bin");
         throw new NumberBaseException(base);
       }
     }
@@ -74,7 +74,7 @@ public class Calculator {
         return;
       }
       catch (NumberFormatException e){
-        System.out.println("Test Hex");
+        System.out.println("TestGame Hex");
         throw new NumberBaseException(base);
       }
     }
@@ -86,7 +86,7 @@ public class Calculator {
         return;
       }
       catch (NumberFormatException e){
-        System.out.println("Test oct");
+        System.out.println("TestGame oct");
         throw new NumberBaseException(base);
       }
     }

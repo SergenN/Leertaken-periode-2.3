@@ -6,7 +6,7 @@ import junit.framework.TestSuite;
 public class AllTests {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for test");
+		TestSuite suite = new TestSuite("TestGame for test");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(TestTraining.class);
 		suite.addTestSuite(TestTree.class);

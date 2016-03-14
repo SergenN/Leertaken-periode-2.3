@@ -56,7 +56,7 @@ public class TestTraining extends TestCase {
 		// Build a new DecisionTree based upon this trainingsset.
 		DecisionTree dc = new DecisionTree(trainingsSet,features);
 
-		// Test whether the decisiontree works as expected.
+		// TestGame whether the decisiontree works as expected.
 		// It should classify the items in the same category 
 		// as assigned to them before.
 		assertEquals("high",dc.assignCategory(item1));
