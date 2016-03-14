@@ -18,6 +18,8 @@
  */
 package com.github.leertaken.leertaak2.Opdracht15V2.classifier;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -59,6 +61,8 @@ public class Node {
 
 	public String getLabel() { return label; }
 
+	public Map<String, Node> getArcs(){return arcs;	}
+
 	public Node follow(String arcLabel) {
 		return (Node)arcs.get(arcLabel);
 	}
@@ -93,4 +97,5 @@ public class Node {
 		buffer.append("]\n");
 		return buffer.toString();
 	}
+
 }

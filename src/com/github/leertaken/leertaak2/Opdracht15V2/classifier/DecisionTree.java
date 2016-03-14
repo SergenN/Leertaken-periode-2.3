@@ -35,6 +35,8 @@ public class DecisionTree implements Classifier {
 		root = tree;
 	}
 
+	public Node getRoot(){return root;}
+
 	/**
 	 * Assign a category to an item. This is the implementation of algorithm
 	 * 4.1 on page 53 of the book.
