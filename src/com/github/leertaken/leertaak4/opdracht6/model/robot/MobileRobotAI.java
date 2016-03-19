@@ -1,6 +1,8 @@
 package com.github.leertaken.leertaak4.opdracht6.model.robot;
 
+import com.github.leertaken.leertaak2.opdracht10.Beslisboom;
 import com.github.leertaken.leertaak4.opdracht6.model.virtualmap.OccupancyMap;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.PipedInputStream;
 import java.io.BufferedReader;
@@ -9,7 +11,7 @@ import java.io.PrintWriter;
 import java.io.PipedOutputStream;
 import java.io.IOException;
 
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * Title    :   The Mobile Robot Explorer Simulation Environment v2.0
@@ -56,149 +58,17 @@ public class MobileRobotAI implements Runnable {
 				robot.setOutput(output);
 
 //      ases where a variable value is never used after its assignment, i.e.:
-				System.out.println("intelligence running");
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
+				System.out.println("\nINFO: intelligence running");
+				bestDirection(input,measures,position);
+				//noAI(measures,position,input);
+				System.out.println("INFO: bestIntell Ended");
 				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.MOVEBW 60");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.ROTATERIGHT 90");
-				result = input.readLine();
-
-				robot.sendCommand("P1.MOVEFW 100");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.ROTATELEFT 45");
-				result = input.readLine();
-
-				robot.sendCommand("P1.MOVEFW 70");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.MOVEFW 70");
-				result = input.readLine();
-
-				robot.sendCommand("P1.ROTATERIGHT 45");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.MOVEFW 90");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.ROTATERIGHT 45");
-				result = input.readLine();
-
-				robot.sendCommand("P1.MOVEFW 90");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.ROTATERIGHT 45");
-				result = input.readLine();
-
-				robot.sendCommand("P1.MOVEFW 100");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.ROTATERIGHT 90");
-				result = input.readLine();
-
-				robot.sendCommand("P1.MOVEFW 80");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-
-				robot.sendCommand("P1.MOVEFW 100");
-				result = input.readLine();
-
-				robot.sendCommand("R1.GETPOS");
-				result = input.readLine();
-				parsePosition(result, position);
-
-				robot.sendCommand("L1.SCAN");
-				result = input.readLine();
-				parseMeasures(result, measures);
-				map.drawLaserScan(position, measures);
-				this.running = false;
+				//this.running = false;
 			} catch (IOException ioe) {
 				System.err.println("execution stopped");
 				running = false;
 			}
 		}
-
 	}
 
 	private void parsePosition(String value, double position[]) {
@@ -245,5 +115,233 @@ public class MobileRobotAI implements Runnable {
 		}
 	}
 
+	private void bestDirection(BufferedReader input, double[] measures, double[] position) throws IOException{
+		System.out.println("\n (new loop)");
+		String result;
 
+		System.out.println("INFO: Initialize getting position");
+		robot.sendCommand("R1.GETPOS");
+		//try{wait(100);}catch (InterruptedException e){e.printStackTrace();}
+		System.out.println("INFO: Robot sended command");
+		result = input.readLine();
+		System.out.println("INFO: Starting parse Data");
+		parsePosition(result, position);
+		System.out.println("INFO: Location completed");
+
+
+		System.out.println("INFO: Initialize Scan");
+		robot.sendCommand("L1.SCAN");
+		//try{wait(100);}catch (InterruptedException e){e.printStackTrace();}
+		System.out.println("INFO: Robot sended command");
+		result = input.readLine();
+		System.out.println("INFO: Scan completed");
+		for(int i = 0; i<360;i++){
+			measures[i]= 100.0;
+		}
+		if(result.length()>= 5 && result.contains("SCAN")){
+			result = result.substring(5); // remove the SCAN Keyword
+			System.out.println("TEST 1:"+result);
+			StringTokenizer tokenizer = new StringTokenizer(result, " ");
+
+			double distance;
+			int direction =0;
+
+			while (tokenizer.hasMoreTokens()){
+				distance = Double.parseDouble(tokenizer.nextToken().substring(2));
+				direction = (int) Math.round(Math.toDegrees(Double.parseDouble(tokenizer.nextToken().substring(2))));
+				if(direction == 360){
+					direction =0;
+				}
+				measures[direction] = distance;
+			}
+			HashMap<Integer,Integer> bestDirection = new HashMap<>();
+			double longestRange=0.0;
+			int beginStreak = 0;
+			int endStreak = 0;
+			int longestStreak=0;
+			boolean streakKilled = false;
+			for (int i = 0; i<360;i++){
+				if(longestRange<measures[i]){
+					longestRange=measures[i];
+					streakKilled = false;
+					if(beginStreak==0){
+						beginStreak = i;
+					}
+					longestStreak++;
+				}else {
+					if(!streakKilled){
+
+						direction =  Math.round((beginStreak+i)/2);
+						System.out.println(beginStreak+" Begin Streak | End streak "+i+ " Direction "+direction+ " longest Streak "+longestStreak);
+						bestDirection.put(longestStreak,direction);
+						streakKilled = true;
+						beginStreak=0;
+						longestStreak=0;
+					}
+				}
+			}
+			Iterator iterator = bestDirection.keySet().iterator();
+			System.out.println(bestDirection.size()+" Ways to go" );
+			if(direction == 0) {
+				System.out.println("INFO: moving "+longestRange);
+				if(longestRange==100.0){
+					longestRange=50;
+				}
+				robot.sendCommand("P1.MOVEFW "+longestRange);
+
+			}else{
+				Integer nextTurn = 0;
+				while (iterator.hasNext()) {
+					nextTurn = (Integer) bestDirection.get(iterator.next());
+					System.out.println(nextTurn);
+				}
+				System.out.println(nextTurn);
+				robot.sendCommand("P1.ROTATERIGHT " + nextTurn);
+			}
+		}else{
+			System.err.println("WARNING: Result shorter than.\n"+result);
+			return;
+		}
+
+	}
+
+	private void noAI(double[] measures, double[] position, BufferedReader input) throws IOException{
+		bestDirection(input,measures,position);
+
+		System.out.println("continueing bad script");
+		String result;
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.MOVEBW 60");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.ROTATERIGHT 90");
+		result = input.readLine();
+
+		robot.sendCommand("P1.MOVEFW 100");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.ROTATELEFT 45");
+		result = input.readLine();
+
+		robot.sendCommand("P1.MOVEFW 70");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.MOVEFW 70");
+		result = input.readLine();
+
+		robot.sendCommand("P1.ROTATERIGHT 45");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.MOVEFW 90");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.ROTATERIGHT 45");
+		result = input.readLine();
+
+		robot.sendCommand("P1.MOVEFW 90");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.ROTATERIGHT 45");
+		result = input.readLine();
+
+		robot.sendCommand("P1.MOVEFW 100");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.ROTATERIGHT 90");
+		result = input.readLine();
+
+		robot.sendCommand("P1.MOVEFW 80");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+		map.drawLaserScan(position, measures);
+
+		robot.sendCommand("P1.MOVEFW 100");
+		result = input.readLine();
+
+		robot.sendCommand("R1.GETPOS");
+		result = input.readLine();
+		parsePosition(result, position);
+
+		robot.sendCommand("L1.SCAN");
+		result = input.readLine();
+		parseMeasures(result, measures);
+	}
 }

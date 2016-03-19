@@ -2,10 +2,7 @@ package com.github.leertaken.leertaak4.opdracht6.gui.controller;
 
 import com.github.leertaken.leertaak4.opdracht6.model.environment.Environment;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +27,8 @@ public class OccupancyMapController extends JMenu implements ActionListener {
 
 	private JMenuItem menuFileOpenMap;
 	private JMenuItem menuFileExit;
+	private JMenu defaultmaps;
+	private JMenuItem subMap, subSonar, subNoSonar;
 
 
 	public OccupancyMapController(Environment environment) {
@@ -45,12 +44,25 @@ public class OccupancyMapController extends JMenu implements ActionListener {
 		this.menuFileOpenMap = new JMenuItem("Open Map");
         this.menuFileOpenMap.addActionListener(this);
 
+		//Mich Open default Maps
+		subMap 	= new JMenuItem("Map");
+		subSonar 	= new JMenuItem("Map met Sonar");
+		subNoSonar = new JMenuItem("Map zonder Sonar");
+		subMap.addActionListener(this);
+		subSonar.addActionListener(this);
+		subNoSonar.addActionListener(this);
+		defaultmaps = new JMenu("Standaard mappen");
+		defaultmaps.add(subMap);
+		defaultmaps.add(subSonar);
+		defaultmaps.add(subNoSonar);
+
 		// Menu File Exit
         this.menuFileExit = new JMenuItem("Exit");
         this.menuFileExit.addActionListener(this);
 
 		// Adds the menu components
 		this.add(menuFileOpenMap);
+		this.add(defaultmaps);
 		this.add(menuFileExit);
 
 
@@ -64,7 +76,12 @@ public class OccupancyMapController extends JMenu implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource().equals(this.menuFileOpenMap)) {
+			try{
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			}
+			catch (Exception a){}
 			JFileChooser chooser = new JFileChooser(new File("c:"));
+
 			int returnVal = chooser.showOpenDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				if (environment.loadMap(chooser.getSelectedFile())){
@@ -75,6 +92,15 @@ public class OccupancyMapController extends JMenu implements ActionListener {
 			}
 		} else if (e.getSource().equals(this.menuFileExit)) {
 			System.exit(0);
+		} else if(e.getSource().equals(this.subMap)){
+			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/opdracht6/defaultMaps/map.xml").toString().substring(6));
+			environment.loadMap(file);
+		} else if(e.getSource().equals(this.subSonar)){
+			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/opdracht6/defaultMaps/MapMetSonarTest.xml").toString().substring(6));
+			environment.loadMap(file);
+		} else if(e.getSource().equals(this.subNoSonar)){
+			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/opdracht6/defaultMaps/MapZonderSonarTest.xml").toString().substring(6));
+			environment.loadMap(file);
 		}
 	}
 
