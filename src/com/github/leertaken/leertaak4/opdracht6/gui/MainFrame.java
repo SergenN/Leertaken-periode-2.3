@@ -46,6 +46,7 @@ public class MainFrame extends JFrame {
 		//this class was originally named: TestApplication
 	}
 
+
 	public void init() {
 		if (this.isVisible()) {
 			this.setContentPane(new JPanel());
@@ -112,7 +113,7 @@ public class MainFrame extends JFrame {
 	}
 
 	/**
-	 * The static void main, this is where the program starts.
+	 * The static void Main, this is where the program starts.
 	 *
 	 * @param args String[]
 	 */

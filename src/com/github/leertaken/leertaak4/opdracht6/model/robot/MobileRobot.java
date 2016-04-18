@@ -78,6 +78,9 @@ public class MobileRobot {
 
 		}
 		this.executor.execute(this.intelligence);
+
+
+
 	}
 
 	public void quit(){

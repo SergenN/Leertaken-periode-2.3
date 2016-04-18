@@ -1,6 +1,6 @@
 Features;2
-Items;4
-Item1;1;1;Hoog
-Item2;1;0;Midden
-Item3;0;1;Midden
-Item4;0;0;Laag
+              Items;4
+              Item1;1;1;Hoog
+              Item2;1;0;Midden
+              Item3;0;1;Midden
+              Item4;0;0;Laag

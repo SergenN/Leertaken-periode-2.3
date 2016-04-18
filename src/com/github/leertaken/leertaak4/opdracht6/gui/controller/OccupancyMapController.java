@@ -23,7 +23,7 @@ import java.io.File;
 
 public class OccupancyMapController extends JMenu implements ActionListener {
 
-	private final Environment environment;
+    private final Environment environment;
 
 	private JMenuItem menuFileOpenMap;
 	private JMenuItem menuFileExit;
@@ -36,13 +36,13 @@ public class OccupancyMapController extends JMenu implements ActionListener {
 
 		this.environment = environment;
 
-		this.menuFileOpenMap = new JMenuItem();
-		this.menuFileExit = new JMenuItem();
+        this.menuFileOpenMap = new JMenuItem();
+        this.menuFileExit = new JMenuItem();
 		// --------------------------- Menu ----------------------------------------
 
 		// Menu File Open Map
 		this.menuFileOpenMap = new JMenuItem("Open Map");
-		this.menuFileOpenMap.addActionListener(this);
+        this.menuFileOpenMap.addActionListener(this);
 
 		//Mich Open default Maps
 		subMap 	= new JMenuItem("Map");
@@ -57,8 +57,8 @@ public class OccupancyMapController extends JMenu implements ActionListener {
 		defaultmaps.add(subNoSonar);
 
 		// Menu File Exit
-		this.menuFileExit = new JMenuItem("Exit");
-		this.menuFileExit.addActionListener(this);
+        this.menuFileExit = new JMenuItem("Exit");
+        this.menuFileExit.addActionListener(this);
 
 		// Adds the menu components
 		this.add(menuFileOpenMap);
@@ -93,14 +93,15 @@ public class OccupancyMapController extends JMenu implements ActionListener {
 		} else if (e.getSource().equals(this.menuFileExit)) {
 			System.exit(0);
 		} else if(e.getSource().equals(this.subMap)){
-			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/map.xml").toString().substring(6));
+			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/opdracht6/defaultMaps/map.xml").toString().substring(6));
 			environment.loadMap(file);
 		} else if(e.getSource().equals(this.subSonar)){
-			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/MapMetSonarTest.xml").toString().substring(6));
+			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/opdracht6/defaultMaps/MapMetSonarTest.xml").toString().substring(6));
 			environment.loadMap(file);
 		} else if(e.getSource().equals(this.subNoSonar)){
-			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/MapZonderSonarTest.xml").toString().substring(6));
+			File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/opdracht6/defaultMaps/MapZonderSonarTest.xml").toString().substring(6));
 			environment.loadMap(file);
 		}
 	}
+
 }

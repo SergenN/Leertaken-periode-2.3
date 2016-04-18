@@ -33,7 +33,7 @@ public class ViewTree extends JPanel {
         JPanel jPanel = new JPanel();
         jPanel.setBorder(BorderFactory.createTitledBorder(node.getLabel()));
         //jPanel.setLayout(null);
-        JLabel label = new JLabel();
+        JLabel label = new JLabel(node.toString());
         if(node.isLeaf()){
             jPanel.setBackground(Color.red);
             label = new JLabel(node.getLabel());
