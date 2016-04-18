@@ -6,13 +6,8 @@ import com.github.leertaken.leertaak1.opdracht19.ui.NumberGUI;
 import com.github.leertaken.leertaak1.opdracht19.ui.OutputGUI;
 
 
-import java.awt.*;
-
-
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Color;
 
 /**
  * Created by Hp user on 17-2-2016.

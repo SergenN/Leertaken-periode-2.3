@@ -1,6 +1,5 @@
 package com.github.leertaken.leertaak3.opdracht7.test;
 
-import com.github.leertaken.leertaak3.opdracht7.Best;
 import com.github.leertaken.leertaak3.opdracht7.TicTacToe;
 import junit.framework.TestCase;
 import org.junit.Test;

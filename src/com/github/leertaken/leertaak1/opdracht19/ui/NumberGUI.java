@@ -1,14 +1,9 @@
 package com.github.leertaken.leertaak1.opdracht19.ui;
 
 import com.github.leertaken.leertaak1.opdracht19.multiformat.*;
-import com.sun.deploy.util.StringUtils;
 
 import javax.swing.*;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.text.html.parser.Entity;
 import java.awt.*;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

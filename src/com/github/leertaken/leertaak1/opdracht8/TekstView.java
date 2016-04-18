@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-    
+
 public class TekstView extends JPanel implements ActionListener{
 	private JTextField steenRoodVeld = new JTextField();
     DobbelsteenModel d;

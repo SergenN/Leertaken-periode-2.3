@@ -2,8 +2,6 @@ package com.github.leertaken.leertaak2.Opdracht15V2.view;
 
 import com.github.leertaken.leertaak2.Opdracht15V2.classifier.*;
 import com.github.leertaken.leertaak2.Opdracht15V2.controller.TreeBuilder;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.TreeView;
 
 import javax.swing.*;
 

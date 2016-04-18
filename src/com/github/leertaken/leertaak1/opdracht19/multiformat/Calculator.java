@@ -18,10 +18,6 @@
  */
 package com.github.leertaken.leertaak1.opdracht19.multiformat;
 
-import javafx.beans.binding.NumberExpressionBase;
-
-import java.util.function.BinaryOperator;
-
 /**
  * The multiformat calculator
  */

@@ -1,13 +1,11 @@
 package com.github.leertaken.leertaak2.Opdracht15V2.controller;
 
 import com.github.leertaken.leertaak2.Opdracht15V2.classifier.*;
-import sun.security.krb5.internal.crypto.Des;
 
 import javax.swing.*;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Created by Hp user on 24-2-2016.

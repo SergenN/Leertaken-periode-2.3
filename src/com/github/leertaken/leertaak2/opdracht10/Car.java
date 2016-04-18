@@ -1,7 +1,5 @@
 package com.github.leertaken.leertaak2.opdracht10;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 /**
  * Created by Hp user on 24-2-2016.
  */

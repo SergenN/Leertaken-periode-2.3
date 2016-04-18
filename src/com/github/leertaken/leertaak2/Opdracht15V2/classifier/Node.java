@@ -18,8 +18,6 @@
  */
 package com.github.leertaken.leertaak2.Opdracht15V2.classifier;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

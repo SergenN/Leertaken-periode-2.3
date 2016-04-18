@@ -5,9 +5,7 @@ import com.github.leertaken.leertaak2.Opdracht15V2.classifier.Feature;
 import com.github.leertaken.leertaak2.Opdracht15V2.classifier.FeatureType;
 import com.github.leertaken.leertaak2.Opdracht15V2.classifier.Item;
 
-import java.io.File;
 import java.io.FileReader;
-import java.net.URL;
 import java.util.*;
 
 /**

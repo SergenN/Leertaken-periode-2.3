@@ -1,7 +1,6 @@
 package com.github.leertaken.leertaak2.Opdracht15V2;
 
 import com.github.leertaken.leertaak2.Opdracht15V2.controller.Loader;
-import com.github.leertaken.leertaak2.Opdracht15V2.controller.TreeBuilder;
 import com.github.leertaken.leertaak2.Opdracht15V2.view.GuiView;
 
 /**

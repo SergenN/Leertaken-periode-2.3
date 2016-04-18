@@ -1,7 +1,6 @@
 package com.github.leertaken.leertaak2.Opdracht15V2.view;
 
 import com.github.leertaken.leertaak2.Opdracht15V2.classifier.*;
-import javafx.scene.layout.Border;
 
 import javax.swing.*;
 import java.awt.*;

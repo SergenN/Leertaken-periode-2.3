@@ -1,11 +1,8 @@
 package com.github.leertaken.leertaak2.opdracht15;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.function.DoubleUnaryOperator;
 
 /**
  * Created by Hp user on 24-2-2016.
