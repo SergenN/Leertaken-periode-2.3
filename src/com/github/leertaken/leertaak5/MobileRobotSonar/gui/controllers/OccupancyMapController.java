@@ -91,13 +91,13 @@ public class OccupancyMapController extends JMenu implements ActionListener {
         } else if (e.getSource().equals(this.menuFileExit)) {
             System.exit(0);
         } else if(e.getSource().equals(this.subMap)){
-            File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/map.xml").toString().substring(6));
+            File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak5/MobileRobotSonar/defaultMaps/map.xml").toString().substring(6));
             environment.loadMap(file);
         } else if(e.getSource().equals(this.subSonar)){
-            File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/MapMetSonarTest.xml").toString().substring(6));
+            File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak5/MobileRobotSonar/defaultMaps/MapMetSonarTest.xml").toString().substring(6));
             environment.loadMap(file);
         } else if(e.getSource().equals(this.subNoSonar)){
-            File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak4/MapZonderSonarTest.xml").toString().substring(6));
+            File file = new File(this.getClass().getClassLoader().getResource("com/github/leertaken/leertaak5/MobileRobotSonar/defaultMaps/ZonderSonarTest.xml").toString().substring(6));
             environment.loadMap(file);
         }
     }

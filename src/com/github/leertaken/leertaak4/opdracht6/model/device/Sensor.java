@@ -164,17 +164,21 @@ public abstract class Sensor extends Device {
         if (this.executingCommand && numSteps > 0.0) {
             if (numSteps < 1.0) {
                 localPosition.rotateAroundAxis(0.0, 0.0, orientation * numSteps * rotStep);
+                //localPosition.resize(10.0, 50,50.0);
+                drawSonar(numSteps);
             } else {
                 localPosition.rotateAroundAxis(0.0, 0.0, orientation * rotStep);
+                drawSonar(numSteps);
             }
             environment.processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
             numSteps -= 1.0;
             this.executingCommand = true;
 
         } else if (this.executingCommand) {
+            drawSonar(10.0);
             this.executingCommand = false;
             if (!detect && !scan) {
-                writeOut("LASER ARRIVED");
+                writeOut("SONAR ARRIVED");
             }
 
         }
@@ -195,4 +199,20 @@ public abstract class Sensor extends Device {
             }
         }
     }
+    private void drawSonar(double radius) {
+        this.getShape().reset();
+
+        double x = localPosition.getX();
+        double y = localPosition.getY();
+
+        double pi = (2 * Math.PI);
+        double step = pi / 360.0;
+
+        for (double i = 0.0; i < pi; i += step) {
+            double rx = x + radius * Math.cos(i);
+            double ry = y + radius * Math.sin(i);
+            this.addPoint((int) rx, (int) ry);
+        }
+    }
+
 }

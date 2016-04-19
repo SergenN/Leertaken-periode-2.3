@@ -82,6 +82,39 @@ public class OccupancyMap {
 		this.processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
 	}
 
+	public void drawSonarScan(double position[], double measures[]){
+		double radiusX = Math.round(position[0] + 20.0 * Math.cos(Math.toRadians(position[2])));
+		double radiusY = Math.round(position[1] + 20.0 * Math.sin(Math.toRadians(position[2])));
+		int direction = (int) Math.round(position[2]);
+
+		for (int i = 0; i < 360; i++) {
+			int dir = i - direction;
+
+			while (dir < 0) {
+				dir += 360;
+			}
+
+			while (dir >= 360) {
+				dir -= 360;
+			}
+
+			double fx = Math.round(radiusX + measures[dir] * Math.cos(Math.toRadians(i)));
+			double fy = Math.round(radiusY + measures[dir] * Math.sin(Math.toRadians(i)));
+
+			if (measures[dir] < 100) {
+				drawSonar(fx, fy, true);
+			}
+		}
+
+		Position robotPos = environment.getRobot().getPlatform().getRobotPosition();
+
+		int robotX = (int) robotPos.getX() / CELL_DIMENSION;
+		int robotY = (int) robotPos.getY() / CELL_DIMENSION;
+		this.grid[robotX][robotY] = ROBOT;
+
+		this.processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
+	}
+
 
 	/**
 	 * This method allows other objects to register as ActionListeners.
@@ -185,6 +218,19 @@ public class OccupancyMap {
 
 				}
 			}
+		}
+	}
+
+	private void drawSonar(double x, double y, boolean obstacle){
+		int incrementX = (int) Math.ceil(x / CELL_DIMENSION);
+		int jencrementY = (int) Math.ceil(y / CELL_DIMENSION);
+
+		if (incrementX < 0 || jencrementY < 0 || incrementX >= MAP_WIDTH / CELL_DIMENSION || jencrementY >= MAP_HEIGHT / CELL_DIMENSION) {
+			return;
+		}
+
+		if (obstacle) {
+			grid[incrementX][jencrementY] = OBSTACLE;
 		}
 	}
 

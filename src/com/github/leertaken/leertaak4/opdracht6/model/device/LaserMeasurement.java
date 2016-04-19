@@ -32,10 +32,12 @@ public class LaserMeasurement {
 
 
 	private void processDirectionValue() {
-		while (direction >= 2.0 * Math.PI)
+		while (direction >= 2.0 * Math.PI) {
 			direction -= 2.0 * Math.PI;
-		while (direction < 0.0)
+		}
+		while (direction < 0.0){
 			direction += 2.0 * Math.PI;
+		}
 	}
 
 }

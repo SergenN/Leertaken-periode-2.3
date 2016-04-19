@@ -1,5 +1,6 @@
 package com.github.leertaken.leertaak4.opdracht6.model.device;
 
+import com.github.leertaken.leertaak4.Opdracht1.Lijang1.Main;
 import com.github.leertaken.leertaak4.opdracht6.model.environment.Environment;
 import com.github.leertaken.leertaak4.opdracht6.model.environment.Obstacle;
 import com.github.leertaken.leertaak4.opdracht6.model.environment.Position;
@@ -14,8 +15,8 @@ import java.awt.geom.Point2D;
 public class Sonar extends Sensor {
     public Sonar(String name, MobileRobot robot, Position localPos, Environment environment) {
         super(name, robot, localPos, environment);
-        backgroundColor = Color.green;
-        foregroundColor = Color.black;
+        backgroundColor = new Color(0,0,0,50);
+        drawSonar(5.0);
     }
 
     protected double read(boolean first) {
@@ -42,5 +43,21 @@ public class Sonar extends Sensor {
             return minDistance;
         }
         return -1.0;
+    }
+
+    private void drawSonar(double radius){
+        this.getShape().reset();
+
+        double x = localPosition.getX();
+        double y = localPosition.getY();
+
+        double pi = (2*Math.PI);
+        double step = pi/360;
+
+        for(double i =0.0;i<pi;i+=step){
+            double radiusX = x + radius * Math.cos(i);
+            double radiusY = y + radius * Math.sin(i);
+            addPoint((int)radiusX,(int)radiusY);
+        }
     }
 }

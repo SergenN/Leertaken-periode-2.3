@@ -39,6 +39,10 @@ public class Position {
         }
     }
 
+    public void resize(double defaultSize, double defaultFade, double maxSize){
+
+    }
+
     public void rotateAroundAxis(Point2D point) {
         double px = point.getX() * Math.cos(t) - point.getY() * Math.sin(t) + x;
         double py = point.getX() * Math.sin(t) + point.getY() * Math.cos(t) + y;

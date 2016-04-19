@@ -119,7 +119,12 @@ public abstract class Device implements Runnable {
 					// waits for a new command
 					synchronized (lock) {
 						// Wait to be notified about a new command (in sendCommand()).
-						lock.wait();
+						try{
+							lock.wait();
+						}
+						catch (InterruptedException e){
+							lock.wait();
+						}
 					}
 				}
 				// processes a new step
@@ -128,6 +133,7 @@ public abstract class Device implements Runnable {
 
 			} catch (InterruptedException ie) {
 				System.err.println("Device : Run was interrupted.");
+				ie.printStackTrace();
 			}
 		} while (this.running);
 	}

@@ -1,6 +1,6 @@
 package com.github.leertaken.leertaak4.opdracht6.model.robot;
 
-import com.github.leertaken.leertaak2.opdracht10.Beslisboom;
+//import com.github.leertaken.leertaak2.opdracht10.Beslisboom;
 import com.github.leertaken.leertaak4.opdracht6.model.virtualmap.OccupancyMap;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -115,7 +115,7 @@ public class MobileRobotAI implements Runnable {
 		}
 	}
 
-	private void bestDirection(BufferedReader input, double[] measures, double[] position) throws IOException{
+	private void bestDirection(BufferedReader input, double[] measures, double[] position) throws IOException {
 		System.out.println("\n (new loop)");
 		String result;
 
@@ -135,9 +135,18 @@ public class MobileRobotAI implements Runnable {
 		System.out.println("INFO: Robot sended command");
 		result = input.readLine();
 		System.out.println("INFO: Scan completed");
-		for(int i = 0; i<360;i++){
-			measures[i]= 100.0;
+
+		robot.sendCommand("S1.SCAN");
+		//result = input.readLine();
+
+		for (int i = 0; i < 360; i++) {
+			measures[i] = 100.0;
 		}
+		scanResults(result,measures);
+
+	}
+
+	private void scanResults(String result, double[] measures){
 		if(result.length()>= 5 && result.contains("SCAN")){
 			result = result.substring(5); // remove the SCAN Keyword
 			System.out.println("TEST 1:"+result);
